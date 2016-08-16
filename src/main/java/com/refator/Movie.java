@@ -5,45 +5,26 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
 
+    private Price price;
+
     private String title;
-    private int priceCode;
 
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        setPriceCode(priceCode);
     }
 
 
     int getFrequentRenterPoints(int daysRented) {
-        if((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1){
-            return 2;
-        }else{
-            return 1;
-        }
+        return price.getFrequentRenterPoints(daysRented);
     }
 
     double getCharge(int daysRented){
-        double result = 0;
-        //determine amounts for line
-        switch (getPriceCode()){
-            case Movie.REGULAR :
-                result += 2;
-                if(daysRented > 2){
-                    result += (daysRented - 2) * 1.5;
-                    break;
-                }
-            case Movie.NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                result += 1.5;
-                if(daysRented > 3){
-                    result += (daysRented - 3) * 1.5;
-                }
-                break;
-        }
-        return result;
+
+        return price.getCharge(daysRented);
+
     }
+
     public String getTitle() {
         return title;
     }
@@ -53,10 +34,19 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return price.getPriceCode();
     }
 
     public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
+        switch (priceCode){
+            case REGULAR:
+                price = new RegularPrice();
+            case CHILDRENS:
+                price = new ChildrensPrice();
+            case NEW_RELEASE:
+                price = new NewReleasePrice();
+            default:
+                throw new IllegalArgumentException("Incorrect price code");
+        }
     }
 }
