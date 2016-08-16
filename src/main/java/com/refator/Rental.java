@@ -1,9 +1,5 @@
 package com.refator;
 
-/**
- * chao.yu@dianping.com
- * Created by apple on 2016/08/15 18:33.
- */
 public class Rental {
     private Movie movie;
     private int daysRented;
