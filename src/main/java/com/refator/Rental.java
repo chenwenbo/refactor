@@ -1,6 +1,7 @@
 package com.refator;
 
 public class Rental {
+
     private Movie movie;
     private int daysRented;
 
@@ -10,15 +11,11 @@ public class Rental {
     }
 
     double getCharge(){
-       return movie.getCharge(daysRented);
+        return movie.getCharge(daysRented);
     }
 
     int getFrequentRenterPoints() {
-        if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1){
-            return 2;
-        }else{
-            return 1;
-        }
+        return movie.getFrequentRenterPoints(daysRented);
     }
 
     public Movie getMovie() {
