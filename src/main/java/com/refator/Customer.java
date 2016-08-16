@@ -20,6 +20,22 @@ public class Customer {
         _rentals.addElement(arg);
     }
 
+    public String htmlStatement(){
+        Enumeration rentals = _rentals.elements();
+        String result = "<H1>Rental Record for <EM>"+ getName() + "</EM></H1>\n";
+        while (rentals.hasMoreElements()){
+            Rental each = (Rental) rentals.nextElement();
+
+            //show figures for this rental
+            result += "\t" + each.getMovie().getTitle() + "\t" +
+                    String.valueOf(each.getCharge()) + "<BR>\n";
+        }
+        // add footer lines
+        result += "<P>Amount owed is<EM>" + String.valueOf(getTotalCharge()) + "</EM></P>\n";
+        result += "<P>You earn<EM>" + String.valueOf(getFrequentRenterPoints()) + "frequent renter points</EM></P>";
+        return result;
+    }
+
     public String statement(){
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for "+ getName() + "\n";
