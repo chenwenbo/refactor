@@ -1,4 +1,4 @@
-package com.refator;
+package com.refator.chapter1;
 
 public class ChildrensPrice extends Price{
 
