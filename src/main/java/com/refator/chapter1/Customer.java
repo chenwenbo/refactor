@@ -53,23 +53,23 @@ public class Customer {
     }
 
     private int getFrequentRenterPoints(){
-        int frequentRenterPoints = 0; //point
+        int result = 0; //point
         Enumeration rentals = _rentals.elements();
         while (rentals.hasMoreElements()){
             Rental each = (Rental) rentals.nextElement();
-            frequentRenterPoints += each.getFrequentRenterPoints();
+            result += each.getFrequentRenterPoints();
         }
-        return frequentRenterPoints;
+        return result;
     }
 
     private double getTotalCharge(){
-        double totalAmount = 0;
+        double result = 0;
         Enumeration rentals = _rentals.elements();
         while (rentals.hasMoreElements()){
             Rental each = (Rental) rentals.nextElement();
-            totalAmount += each.getCharge();
+            result += each.getCharge();
         }
-        return totalAmount;
+        return result;
     }
 
 }
